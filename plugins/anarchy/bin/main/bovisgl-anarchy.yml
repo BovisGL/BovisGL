@@ -1,0 +1,40 @@
+# BovisGL Anarchy Fabric Mod Configuration
+proxy:
+  # Proxy API endpoint for registration
+  url: "http://localhost:8080"
+  
+  # API key for authentication with proxy
+  api-key: "bovisgl-anarchy-key"
+  
+  # Server connection details
+  server:
+    host: "localhost"
+    port: 25566
+    
+  # Heartbeat interval in seconds
+  heartbeat-interval: 30
+
+# World configuration
+worlds:
+  # Enable world registration with proxy
+  enable-registration: true
+  
+  # Main world name
+  main-world: "anarchy_overworld"
+  
+  # World display names
+  display-names:
+    anarchy_overworld: "Anarchy Overworld"
+    anarchy_nether: "Anarchy Nether"
+    anarchy_end: "Anarchy End"
+
+# Logging configuration
+logging:
+  # Log level: DEBUG, INFO, WARN, ERROR
+  level: "INFO"
+  
+  # Enable detailed proxy communication logging
+  log-proxy-requests: false
+  
+  # Enable world registry debug logging
+  log-world-registry: false

@@ -1,0 +1,242 @@
+# BovisGL Proxy Plugin Configuration
+# Velocity plugin for BovisGL network proxy
+
+# Ban System Configuration
+bans:
+  # Database configuration
+  database:
+    # Database type: sqlite or postgresql
+    type: "sqlite"
+    
+    # SQLite configuration (used when type is sqlite)
+    sqlite:
+      # Relative to BovisGL root: plugins/proxy runs from servers/proxy,
+      # so we need to go up to BovisGL root (../..) then to web/site/backend/data/bans
+      file: "../../web/site/backend/data/bans/bans.db"
+    
+    # PostgreSQL configuration (used when type is postgresql)
+    postgresql:
+      host: "localhost"
+      port: 5432
+      database: "bovisgl_bans"
+      username: "postgres"
+      password: "postgres"
+      auto-create: true
+    
+    # Connection pool settings
+    pool:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000  # 30 seconds
+      idle-timeout: 600000       # 10 minutes
+      max-lifetime: 1800000      # 30 minutes
+  
+  # Data directory settings
+  # Relative to BovisGL root: from servers/proxy, go up to root (../..) then to web/site/backend/data/bans
+  data-directory: "../../web/site/backend/data/bans/"
+  
+  # Ban settings
+  ban-settings:
+    # Default ban duration if none specified (in seconds)
+    default-duration: 86400  # 24 hours
+    
+    # Maximum ban duration (in seconds, -1 for no limit)
+    max-duration: -1
+    
+    # Allow temporary bans
+    allow-temporary-bans: true
+    
+    # Allow permanent bans
+    allow-permanent-bans: true
+    
+    # Enable ban history tracking
+    enable-history: true
+    
+    # Number of bans to show per page in /banlist
+    bans-per-page: 10
+    
+    # Number of history entries to show per page in /banhistory
+    history-per-page: 10
+  
+  # Website export configuration
+  website-export:
+    enabled: true
+    file: "bans.json"
+    interval: 5  # minutes
+    # Update interval for website data (in seconds)
+    update-interval: 30
+    # Export ban data to JSON files
+    export-json: true
+  
+  # Geyser/Floodgate settings
+  geyser:
+    # Enable offline UUID resolution for Java and Bedrock players
+    enable-offline-resolution: true
+    
+    # Floodgate prefix used for Bedrock players (default is ".")
+    floodgate-prefix: "."
+    
+    # Additional Floodgate prefixes to check (some servers use different prefixes)
+    additional-prefixes:
+      - "*"
+      - "~"
+  
+  # Logging settings
+  logging:
+    # Log all ban/pardon actions
+    log-actions: true
+    
+    # Log database queries (debug mode)
+    log-queries: false
+    
+    # Log connection attempts and ban checks
+    log-connections: true
+  
+  # Cleanup configuration
+  cleanup:
+    interval: 60  # minutes
+
+# Player Tracking Configuration
+tracking:
+  # Database configuration
+  database:
+    # Database type: sqlite or postgresql
+    type: "sqlite"
+    
+    # SQLite configuration (used when type is sqlite)
+    sqlite:
+      # Relative to BovisGL root: from servers/proxy, go up to root (../..) then to web/site/backend/data/players
+      file: "../../web/site/backend/data/players/players.db"
+    
+    # PostgreSQL configuration (used when type is postgresql)
+    postgresql:
+      host: "localhost"
+      port: 5432
+      database: "bovisgl_tracking"
+      username: "bovisgl"
+      password: "password"
+      auto-create: true
+    
+    # Connection pool settings
+    pool:
+      max-pool-size: 10
+      min-idle: 2
+      connection-timeout: 30000  # 30 seconds
+      idle-timeout: 600000       # 10 minutes
+      max-lifetime: 1800000      # 30 minutes
+  
+  # Player tracking settings
+  player-tracking:
+    player-joins: true
+    player-quits: true
+    playtime: true
+    update-interval: 30  # seconds
+  
+  # Backend API sync configuration
+  backend-sync:
+    enabled: false
+    url: "http://localhost:3000"
+    api-key: ""
+    interval: 15  # minutes
+  
+  # WebSocket configuration for live updates
+  websocket:
+    enabled: false
+    url: "ws://localhost:3001"
+    api-key: ""
+    reconnect-interval: 30  # seconds
+  
+  # Playtime tracking
+  playtime:
+    update-interval: 30  # seconds
+    save-interval: 300   # seconds (5 minutes)
+  
+  # Data cleanup
+  cleanup:
+    interval: 24  # hours
+    keep-history: 90  # days
+  
+  # Debug configuration
+  debug:
+    enabled: false
+
+# Welcome Messages Configuration
+welcome:
+  enabled: true
+  
+  # First-time join message
+  first-join:
+    enabled: true
+    message: "&a&lWelcome to BovisGL Network! &r&7Thanks for joining us for the first time!"
+    additional-messages:
+      - "&7Type &a/help &7for a list of commands"
+      - "&7Join our Discord: &bhttps://discord.gg/SVNfJZ6Rgz"
+      - "&7Visit our website: &bhttps://bovisgl.xyz"
+      - "&7Explore our servers: &fHub, Anarchy, Civilization, Arena, Parkour"
+      - "&7Have fun and follow the rules!"
+  
+  # Returning player message
+  returning:
+    enabled: true
+    message: "&e&lWelcome back, &a{player}&e! &r&7Good to see you again!"
+    show-last-seen: true
+    last-seen-format: "&7Last seen: &f{time} ago"
+  
+  # Long-term returner message
+  long-term-returner:
+    enabled: true
+    # How long since last login to be considered "long-term" (in hours)
+    threshold-hours: 168  # 7 days (168 hours)
+    message: "&d&lWelcome back to BovisGL Network, &a{player}&d! &r&7It's been a while since we've seen you!"
+    show-absence-time: true
+    absence-format: "&7You've been away for &f{time}&7!"
+    additional-messages:
+      - "&7A lot might have changed since you were last here"
+      - "&7Type &a/help &7to see what's new"
+      - "&7Join our Discord: &bhttps://discord.gg/SVNfJZ6Rgz"
+      - "&7Visit our website: &bhttps://bovisgl.xyz"
+  
+  # Staff join message
+  staff:
+    enabled: true
+    message: "&a[STAFF] &f{player} &ahas joined the network"
+
+# Cross-Platform Features
+cross-platform:
+  enabled: true
+  
+  # Server list for cross-server features
+  servers:
+    - name: "hub"
+      display: "Hub"
+      ip: "localhost"
+      port: 25565
+    - name: "anarchy"
+      display: "Anarchy"
+      ip: "localhost"
+      port: 25566
+    - name: "civilization"
+      display: "Civilization"
+      ip: "localhost"
+      port: 25567
+    - name: "arena"
+      display: "Arena"
+      ip: "localhost"
+      port: 25568
+    - name: "parkour"
+      display: "Parkour"
+      ip: "localhost"
+      port: 25569
+
+# Network Configuration
+network:
+  name: "BovisGL Network"
+  server-name: "BovisGL-Server"
+  region: "US-East"
+  motd: "&6&lBovisGL &8&l| &fMultiplayer Network"
+  
+  # Maintenance mode
+  maintenance:
+    enabled: false
+    message: "&cThe network is currently under maintenance."
+    bypass-permission: "bovisgl.maintenance.bypass"

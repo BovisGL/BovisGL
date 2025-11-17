@@ -1,0 +1,9 @@
+{
+  "id": "bovisgl-proxy",
+  "name": "BovisGL Proxy Plugin",
+  "version": "1.0.0",
+  "description": "Network management and moderation for BovisGL Velocity proxy",
+  "authors": ["BovisGL"],
+  "main": "com.bovisgl.proxy.BovisGLProxyPlugin",
+  "dependencies": []
+}

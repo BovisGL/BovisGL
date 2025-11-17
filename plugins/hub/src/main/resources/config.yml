@@ -1,0 +1,89 @@
+# BovisGL Hub Plugin Configuration
+# Paper/Spigot plugin for BovisGL network hub servers
+
+# ForceSpawn Module Configuration
+forcespawn:
+  # Whether to enable the ForceSpawn functionality
+  enabled: true
+  
+  # Whether to delete player data files (playerUUID.dat) when they leave
+  # This ensures they spawn at the server's spawn point when they rejoin
+  delete-player-data: true
+  
+  # Whether to delete player advancements when they leave
+  delete-player-advancements: false
+  
+  # Whether to delete player stats when they leave
+  delete-player-stats: false
+  
+  # Whether to delete players from player.dat_old backups
+  delete-player-backups: true
+  
+  # Delay in seconds to wait after player quits before deleting their data
+  # This helps prevent race conditions with server saving
+  deletion-delay: 2
+  
+  # Enable debug logging for troubleshooting
+  debug: false
+  
+  # Message to send to players when they join (supports color codes with &)
+  # Supports a %name% placeholder which will be replaced with the player's name
+  join-message: "&6Welcome to BovisGL, %name%! &7You can explore the hub or go through the lava portal to head to Anarchy. Use &e/discord &7for an invite and visit &ehttps://bovisgl.xyz &7for updates and more. Please read the rules on the big welcome board before playing."
+  
+  # Whether to force teleport players to spawn on join (in addition to data deletion)
+  # This is a fallback in case data deletion doesn't work
+  force-teleport-on-join: false
+
+# Hub-specific configuration
+hub:
+  # Server name for identification
+  server-name: "BovisGL Hub"
+  
+  # Whether to enable cross-server communication
+  cross-server-enabled: true
+  
+  # Hub world settings
+  world:
+    # Enable hub command to return to hub
+    enable-hub-command: true
+    
+    # Enable server commands for navigation
+    enable-server-commands: true
+    
+    # Command cooldown in seconds (0 to disable)
+    command-cooldown: 3
+    
+    # Messages
+    messages:
+      no-permission: "&cYou don't have permission to use this command!"
+      server-not-found: "&cServer not found!"
+      server-offline: "&cServer is currently offline!"
+      connecting-to-hub: "&aConnecting to hub..."
+  
+  # Server connections for hub commands
+  servers:
+    anarchy:
+      server-name: "anarchy"
+      message: "&aConnecting to anarchy server..."
+      aliases: ["an"]
+    
+    civilization:
+      server-name: "civilization"
+      message: "&aConnecting to civilization server..."
+      aliases: ["civ", "civilisation"]
+    
+    arena:
+      server-name: "arena"
+      message: "&aConnecting to arena server..."
+      aliases: ["pvp"]
+    
+    parkour:
+      server-name: "parkour"
+      message: "&aConnecting to parkour server..."
+      aliases: ["pk"]
+  
+  # Backend API configuration for BovisGL web dashboard
+  backend:
+    enabled: false
+    url: "http://localhost:3000"
+    api-key: ""

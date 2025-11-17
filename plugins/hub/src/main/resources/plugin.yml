@@ -1,0 +1,79 @@
+name: BovisGL-hub
+version: 1.0.0
+main: com.bovisgl.hub.BovisGLHubPlugin
+api-version: 1.21
+authors: [BovisGL]
+description: Hub plugin for BovisGL Paper servers with custom spawn system
+website: https://bovisgl.xyz
+
+commands:
+  bovisgl-hub:
+    description: Main BovisGL Hub plugin command
+    usage: /bovisgl-hub [reload]
+    permission: bovisgl.admin
+    aliases: [bgl-hub, hub]
+  
+  forcespawn:
+    description: ForceSpawn management commands
+    usage: /forcespawn [reload]
+    permission: bovisgl.forcespawn.admin
+    aliases: [fs]
+  
+  customspawn:
+    description: Custom spawn management commands
+    usage: /customspawn [set|remove|list|tp|reload] [name]
+    permission: bovisgl.customspawn.admin
+    aliases: [cspawn, cs]
+  ban:
+    description: Ban a player (centralized)
+    usage: /ban <player> [reason]
+    permission: bovisgl.ban
+  unban:
+    description: Unban a player (centralized)
+    usage: /unban <player>
+    permission: bovisgl.unban
+
+permissions:
+  bovisgl.*:
+    description: All BovisGL permissions
+    children:
+      bovisgl.admin: true
+      bovisgl.forcespawn.*: true
+      bovisgl.customspawn.*: true
+  bovisgl.ban: true
+  bovisgl.unban: true
+    default: op
+  
+  bovisgl.admin:
+    description: Administrative access to BovisGL Hub plugin
+    default: op
+  
+  bovisgl.admin.reload:
+    description: Permission to reload plugin configuration
+    default: op
+  
+  bovisgl.forcespawn.*:
+    description: All ForceSpawn permissions
+    children:
+      bovisgl.forcespawn.admin: true
+    default: op
+  
+  bovisgl.forcespawn.admin:
+    description: Administrative access to ForceSpawn features
+    default: op
+  
+  bovisgl.customspawn.*:
+    description: All Custom Spawn permissions
+    children:
+      bovisgl.customspawn.admin: true
+    default: op
+  
+  bovisgl.customspawn.admin:
+    description: Administrative access to Custom Spawn features
+    default: op
+  bovisgl.ban:
+    description: Permission to ban players (centralized system)
+    default: op
+  bovisgl.unban:
+    description: Permission to unban players (centralized system)
+    default: op

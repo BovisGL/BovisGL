@@ -1,0 +1,42 @@
+{
+	"schemaVersion": 1,
+	"id": "bovisgl-anarchy",
+	"version": "${version}",
+	"name": "BovisGL Anarchy",
+	"description": "Server-side mod for BovisGL Anarchy server integration with proxy network",
+	"authors": [
+		"BovisGL Development Team"
+	],
+	"contact": {
+		"website": "https://bovisgl.xyz",
+		"sources": "https://github.com/elijah-frank/BovisGL"
+	},
+	"license": "MIT",
+	"icon": "assets/bovisgl-anarchy/icon.png",
+	"environment": "server",
+	"entrypoints": {
+		"main": [
+			{
+				"value": "anarchy.bovisgl.BovisGLanarchy",
+				"adapter": "kotlin"
+			}
+		]
+	},
+	"mixins": [
+		"bovisgl-anarchy.mixins.json",
+		{
+			"config": "bovisgl-anarchy.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.17.2",
+		"minecraft": "~1.21.9",
+		"java": ">=21",
+		"fabric-api": "*",
+		"fabric-language-kotlin": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
