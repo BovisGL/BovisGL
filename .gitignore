@@ -1,160 +1,100 @@
-############################################################
-# BovisGL Enhanced .gitignore
-############################################################
+# IDE
+.vscode/
 
-# Minecraft server runtime (worlds, jars, logs, configs that belong to live instances)
-# Fully ignored. Keep plugin source under /plugins and web app under /web.
-# If you need to store a template config, name it server.properties.example (pattern un-ignored below).
-servers/
-!servers/*/server.properties.example
-
-
-
-# Web app runtime & secrets
-web/site/data/
-web/site/logs/
-web/site/backend/data/
-web/site/backend/prisma/dev.db
-web/site/backend/prisma/migrations/
-web/site/backend/src/generated/
-.env
-.env.*
-*secret*
-config.json
-
-# Discord / AI caches
-discord_cache/
-*.discord
-ai_cache/
-llama_cache/
-model_cache/
-*.model
-conversation_logs/
-
-# Databases (anywhere)
-*.db
-*.sqlite
-*.sqlite3
-*.db-journal
-*.db-shm
-*.db-wal
-**/*.db
-**/*.sqlite
-**/*.sqlite3
-**/*.db-journal
-**/*.db-shm
-**/*.db-wal
-
-# Build artifacts & dependencies
-node_modules/
-dist/
-build/
-out/
-web/site/backend/dist/
-web/site/frontend/dist/
-*.tsbuildinfo
-target/
-bin/
-.gradle/
-**/build/
-**/target/
-.mvn/
-
-# Temp uploads
-web/site/backend/temp_uploads/
-web/site/backend/temp_jar_uploads/
-
-# Logs & misc
-*.log
-*.tmp
-*.swp
-logs/
-build-logs/
-backups/
+# OS
 .DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDEs
+.vscode/
+.idea/
+*.iml
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+
+# Node.js
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
+package-lock.json
+yarn.lock
 
-# IDE/editor
-.vscode/settings.json
-.vscode/launch.json
-.vscode/tasks.json
-.idea/
-*.sublime-*
-.fleet/
-*.code-workspace
+# TypeScript
+*.tsbuildinfo
+dist/
+build/
 
-# OS
-Thumbs.db
-Desktop.ini
-$RECYCLE.BIN/
-*.cab
-*.msi
-*.msix
-*.msm
-*.msp
+# Node environment
+node_modules/
 
-# Coverage / testing
-coverage/
-*.cover
-.nyc_output
-.coverage
-htmlcov/
-.pytest_cache/
-lcov.info
+# Java/Maven
+target/
+.classpath
+.m2/
+*.jar
+*.war
+*.ear
+pom.xml.tag
+pom.xml.releaseBackup
+release.properties
 
-# Documents (keep main, ignore sensitive/temp)
-documents/temp/
-documents/sensitive/
-plans/temp/
-plans/private/
-
-# Chat / AI patterns
-**/*.discord-cache
-**/*conversation-history*
-**/*discord-logs*
-**/*ai-logs*
-*.token
-*.key
-*.secret
-*.secrets
-
-## LuckPerms section removed (integration deprecated)
+# Gradle
+.gradle/
+build/
+gradle/wrapper/gradle-wrapper.jar
+gradle/wrapper/gradle-wrapper.properties
 
 # Python
 __pycache__/
 *.py[cod]
-*.pyo
-*.pyd
-.python-version
+*$py.class
+*.so
+.Python
+env/
 venv/
-servers/**/venv/
+ENV/
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+.coverage
 
-# Java/Kotlin
-*.class
-*.iml
-.classpath
-.project
-.settings/
+# Environment variables
+.env
+.env.local
+.env.*.local
 
-# Archives
-*.zip
-*.tar
-*.tar.gz
-*.tgz
-*.7z
+# Logs
+logs/
+*.log
 
-# Security artifacts
-*.pem
-*.crt
-*.pfx
-*.p12
-*keystore*
-*truststore*
-*credentials*
-id_rsa*
-id_ed25519*
+# Temporary files
+tmp/
+temp/
+*.tmp
 
-# End
+# Project-specific (to be updated)
+# TODO: Add custom ignores for this repo
+
+backups/
+build*/
+*.db*
+*.sqlite
+*/run/*
+servers/
+systemd-services/
+.internal-docs
+
+# TODO - LOOK INTO HOW THIS IS BEING USED
+/secrets/
+
+# TODO - MOVE THIS FOLER ELSEWHERE
+communications/src/data/*
