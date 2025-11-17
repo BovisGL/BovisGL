@@ -1,0 +1,28 @@
+/* HomePage styles */
+
+.home-page {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.floating-auth-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.container > * {
+  margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+  .floating-auth-btn {
+    top: 12px;
+    right: 12px;
+  }
+}

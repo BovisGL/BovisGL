@@ -1,0 +1,95 @@
+/* ======================== SHARED BUTTON STYLES ======================== */
+/* Button styles used across all pages */
+
+.button {
+  display: inline-block;
+  text-decoration: none;
+  padding: clamp(0.5rem, 2vw, 1.25rem) clamp(1rem, 3vw, 2rem);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: bold;
+  transition: all var(--transition-medium);
+  font-size: clamp(0.875rem, 2vw, 1.125rem);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Button Variants */
+.button-primary {
+  background: linear-gradient(90deg, var(--accent-blue) 0%, var(--accent-blue-dark) 100%);
+  color: var(--text-primary);
+}
+
+.button-primary:hover {
+  background: linear-gradient(90deg, #3d7ae6 0%, #1e4a95 100%);
+}
+
+.button-success {
+  background-color: var(--status-online);
+  color: var(--text-primary);
+}
+
+.button-success:hover {
+  background-color: #45a049;
+}
+
+.button-warning {
+  background-color: var(--status-starting);
+  color: var(--text-primary);
+}
+
+.button-danger {
+  background-color: var(--status-offline);
+  color: var(--text-primary);
+}
+
+.button-secondary {
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-medium);
+}
+
+.send-button {
+  background-color: var(--status-online);
+  color: var(--text-primary);
+  padding: clamp(0.6rem, 1.5vw, 1rem) clamp(1rem, 2vw, 1.5rem);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  margin-top: clamp(0.75rem, 1.5vw, 1rem);
+  transition: all var(--transition-fast);
+}
+
+.send-button:hover {
+  background-color: #45a049;
+}
+
+.copy-button {
+  background-color: #f0ad4e;
+  color: black;
+  padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(0.75rem, 2vw, 1.25rem);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: clamp(0.8rem, 1.5vw, 0.95rem);
+  transition: all var(--transition-fast);
+}
+
+.copy-button:hover {
+  background-color: #ec971f;
+}

@@ -1,0 +1,44 @@
+{
+  "name": "BovisGL Network - Minecraft Server",
+  "short_name": "BovisGL",
+  "description": "Epic crossplay Minecraft server network supporting Java & Bedrock editions with Anarchy, Arena PvP, Parkour, and Civilization game modes.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#4CAF50",
+  "orientation": "portrait-primary",
+  "categories": ["games", "entertainment"],
+  "lang": "en-US",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/logo.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "BovisGL Network Homepage"
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "web",
+      "url": "https://bovisgl.xyz"
+    }
+  ],
+  "prefer_related_applications": false,
+  "scope": "/",
+  "id": "bovisgl-network"
+} 

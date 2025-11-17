@@ -1,0 +1,104 @@
+/* ======================== SHARED CARD STYLES ======================== */
+/* Card components used across all pages */
+
+.card {
+  background-color: var(--bg-secondary);
+  border-radius: clamp(8px, 2vw, 16px);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.card-clickable {
+  cursor: pointer;
+}
+
+/* Server Card Specific */
+.server-card {
+  background-color: var(--bg-secondary);
+  border-radius: clamp(8px, 2vw, 16px);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  min-height: clamp(200px, 50vw, 280px);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.server-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.server-banner {
+  height: clamp(6px, 1vw, 10px);
+  flex-shrink: 0;
+}
+
+.server-content {
+  padding: clamp(1rem, 3vw, 1.5rem);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.server-title {
+  margin: 0 0 clamp(0.75rem, 2vw, 1.25rem) 0;
+  font-size: clamp(1.125rem, 3vw, 1.5rem);
+  line-height: 1.2;
+  font-weight: 600;
+  word-break: break-word;
+  color: var(--text-primary);
+}
+
+.server-description {
+  color: var(--text-tertiary);
+  margin-bottom: clamp(0.75rem, 2vw, 1.25rem);
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  line-height: 1.5;
+}
+
+.server-buttons {
+  display: flex;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
+  margin-top: clamp(0.5rem, 1vw, 1rem);
+  flex-wrap: wrap;
+}
+
+/* Panel/Container Card */
+.panel {
+  background-color: var(--bg-secondary);
+  border-radius: clamp(8px, 2vw, 16px);
+  padding: clamp(1.5rem, 5vw, 2.5rem);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Section Card */
+.section-card {
+  background-color: var(--bg-secondary);
+  border-radius: clamp(6px, 1.5vw, 10px);
+  padding: clamp(1rem, 2vw, 1.5rem);
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.identity-section {
+  background: var(--bg-tertiary);
+  border-radius: clamp(6px, 1.5vw, 10px);
+  padding: clamp(1rem, 3vw, 1.5rem);
+  margin-bottom: clamp(1rem, 3vw, 1.5rem);
+  border: 1px solid var(--border-light);
+}

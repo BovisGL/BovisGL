@@ -1,0 +1,212 @@
+/**
+ * AdminPanel Styles
+ * 
+ * Layout for admin dashboard with sidebar and content area.
+ * Responsive grid for server cards, mobile menu button.
+ * Matches old frontend structure.
+ */
+
+.admin-panel-container {
+  display: flex;
+  min-height: 100vh;
+  background: #1a1d24;
+  position: relative;
+}
+
+.admin-toggle-button {
+  position: fixed;
+  top: clamp(12px, 2vw, 16px);
+  left: clamp(12px, 2vw, 16px);
+  z-index: 1001;
+  background: #1b2a33;
+  border: 1px solid #27343f;
+  border-radius: 6px;
+  color: #00f5e0;
+  padding: clamp(6px, 1.5vw, 8px);
+  cursor: pointer;
+  font-size: clamp(14px, 2vw, 16px);
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.admin-toggle-button:hover {
+  background: #234152;
+  color: #00ffff;
+}
+
+.admin-toggle-button:active {
+  transform: scale(0.95);
+}
+
+.admin-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: clamp(1.5rem, 4vw, 2rem);
+}
+
+.admin-title {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  color: #ffffff;
+  margin: 0 0 1.5rem 0;
+  font-weight: 700;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: clamp(1.25rem, 3vw, 1.75rem);
+  overflow-y: auto;
+}
+
+.loading-state,
+.error-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 2rem;
+}
+
+.spinner-large {
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(79, 140, 255, 0.2);
+  border-top-color: #4f8cff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error-state button {
+  padding: 0.875rem 1.5rem;
+  background: linear-gradient(135deg, #4f8cff 0%, #3b6ecc 100%);
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.error-state button:hover {
+  background: linear-gradient(135deg, #5c99ff 0%, #4578d6 100%);
+  box-shadow: 0 4px 12px rgba(79, 140, 255, 0.3);
+}
+
+/* Logout modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 2000;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: #23272f;
+  border: 2px solid rgba(79, 140, 255, 0.3);
+  border-radius: 12px;
+  padding: clamp(1.5rem, 4vw, 2rem);
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+}
+
+.modal-content h3 {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+}
+
+.modal-content p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: clamp(0.95rem, 2.5vw, 1rem);
+  margin: 0 0 1.5rem 0;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+.modal-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 44px;
+  min-width: 100px;
+}
+
+.modal-button.cancel {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.modal-button.cancel:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.modal-button.confirm {
+  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+  color: #ffffff;
+}
+
+.modal-button.confirm:hover {
+  background: linear-gradient(135deg, #f55547 0%, #dc3d3d 100%);
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+}
+
+/* Mobile styles */
+@media (max-width: 1023px) {
+  .admin-content {
+    padding: 1rem;
+    padding-top: clamp(3rem, 8vw, 4.5rem);
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .card-grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  }
+}
+
+/* Large desktop */
+@media (min-width: 1536px) {
+  .card-grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr));
+  }
+}

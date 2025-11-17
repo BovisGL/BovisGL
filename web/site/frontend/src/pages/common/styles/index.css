@@ -1,0 +1,10 @@
+/* ======================== SHARED STYLES INDEX ======================== */
+/* Import all shared styles - use this file to import all common styles at once */
+
+@import './variables.css';
+@import './layout.css';
+@import './buttons.css';
+@import './cards.css';
+@import './status.css';
+@import './forms.css';
+@import './utilities.css';

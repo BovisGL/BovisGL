@@ -1,0 +1,211 @@
+/**
+ * AdminSidebar Styles
+ * 
+ * Resizable sidebar with gradient buttons.
+ * Desktop: 340-640px resizable
+ * Mobile (<1024px): full-screen overlay with slide animation
+ */
+
+.admin-sidebar {
+  width: var(--sidebar-width, 340px);
+  background: linear-gradient(180deg, #1a1d24 0%, #23272f 100%);
+  border-right: 2px solid rgba(79, 140, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar-header {
+  padding: clamp(1.5rem, 4vw, 2rem);
+  border-bottom: 2px solid rgba(79, 140, 255, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-header h3 {
+  color: #00f5e0;
+  font-weight: 700;
+}
+
+.mobile-close {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #00f5e0;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.mobile-close:hover {
+  color: #00ffff;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+}
+
+.sidebar-button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  min-height: 44px;
+}
+
+/* Button gradient colors - matching old frontend */
+.sidebar-button.blue {
+  background: linear-gradient(135deg, #4f8cff 0%, #2356a8 100%);
+}
+
+.sidebar-button.blue:hover {
+  background: linear-gradient(135deg, #5c99ff 0%, #3b6ecc 100%);
+  box-shadow: 0 6px 20px rgba(79, 140, 255, 0.4);
+  transform: translateX(4px);
+}
+
+.sidebar-button.green {
+  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+}
+
+.sidebar-button.green:hover {
+  background: linear-gradient(135deg, #5cb860 0%, #4fb354 100%);
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+  transform: translateX(4px);
+}
+
+.sidebar-button.purple {
+  background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%);
+}
+
+.sidebar-button.purple:hover {
+  background: linear-gradient(135deg, #ab47bc 0%, #8e24aa 100%);
+  box-shadow: 0 6px 20px rgba(156, 39, 176, 0.4);
+  transform: translateX(4px);
+}
+
+.sidebar-button.orange {
+  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+}
+
+.sidebar-button.orange:hover {
+  background: linear-gradient(135deg, #ffa726 0%, #fb8c00 100%);
+  box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4);
+  transform: translateX(4px);
+}
+
+.sidebar-button.teal {
+  background: linear-gradient(135deg, #009688 0%, #00796b 100%);
+}
+
+.sidebar-button.teal:hover {
+  background: linear-gradient(135deg, #00a89e 0%, #00897b 100%);
+  box-shadow: 0 6px 20px rgba(0, 150, 136, 0.4);
+  transform: translateX(4px);
+}
+
+.sidebar-button.red {
+  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+}
+
+.sidebar-button.red:hover {
+  background: linear-gradient(135deg, #f55547 0%, #dc3d3d 100%);
+  box-shadow: 0 6px 20px rgba(244, 67, 54, 0.4);
+  transform: translateX(4px);
+}
+
+.resize-handle {
+  position: absolute;
+  top: 0;
+  right: -4px;
+  width: 8px;
+  height: 100%;
+  cursor: col-resize;
+  background: transparent;
+  transition: background 0.2s ease;
+}
+
+.resize-handle:hover {
+  background: rgba(79, 140, 255, 0.3);
+}
+
+.sidebar-backdrop {
+  display: none;
+}
+
+/* Mobile styles (<1024px) */
+@media (max-width: 1023px) {
+  .admin-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100% !important;
+    max-width: 100%;
+    z-index: 1000;
+    transform: translateX(-100%);
+    border-right: none;
+  }
+
+  .admin-sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  .mobile-close {
+    display: block;
+  }
+
+  .resize-handle {
+    display: none;
+  }
+
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .sidebar-nav {
+    padding: 1rem;
+  }
+
+  .sidebar-button {
+    min-height: 48px;
+    padding: 0.875rem 1.25rem;
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .admin-sidebar {
+    max-width: 400px;
+  }
+}

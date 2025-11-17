@@ -1,0 +1,116 @@
+/* Simple Loading Screen */
+.vault-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #000000 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  transition: opacity 0.5s ease-out;
+}
+
+.vault-screen.loading-complete {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.vault-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.vault-core {
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, #1a1a2e 0%, #0f0f23 70%);
+  border: 2px solid #00ffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2s infinite;
+}
+
+.core-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #00ffff;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.control-panel {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 1.5rem;
+  max-width: 400px;
+}
+
+.terminal-display {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 1rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.progress-bar-vault {
+  width: 100%;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #333;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0.5rem 0;
+}
+
+.progress-fill-vault {
+  height: 100%;
+  background: linear-gradient(90deg, #00ffff, #00ff88);
+  border-radius: 9px;
+  transition: width 0.5s ease;
+}
+
+.status-text {
+  color: #888;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% { 
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .vault-core {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .core-logo {
+    font-size: 1.2rem;
+  }
+  
+  .control-panel {
+    max-width: 300px;
+    padding: 1rem;
+  }
+}

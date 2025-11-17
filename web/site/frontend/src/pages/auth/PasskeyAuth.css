@@ -1,0 +1,140 @@
+/**
+ * PasskeyAuth Styles
+ * 
+ * Login page styling matching old frontend.
+ * Colors: #23272f background, #4f8cff primary blue, #ff4f4f error red
+ */
+
+.passkey-auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a1d24 0%, #23272f 100%);
+  padding: 1rem;
+}
+
+.passkey-auth-card {
+  background: rgba(35, 39, 47, 0.95);
+  border: 1px solid rgba(79, 140, 255, 0.2);
+  border-radius: 12px;
+  padding: clamp(2rem, 5vw, 3rem);
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.passkey-auth-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.passkey-auth-header h1 {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+  font-weight: 700;
+}
+
+.passkey-auth-header p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  margin: 0;
+}
+
+.passkey-error {
+  background: rgba(255, 79, 79, 0.1);
+  border: 1px solid #ff4f4f;
+  border-radius: 8px;
+  padding: 0.875rem;
+  color: #ff4f4f;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.passkey-auth-button {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #4f8cff 0%, #3b6ecc 100%);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 52px;
+}
+
+.passkey-auth-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #5c99ff 0%, #4578d6 100%);
+  box-shadow: 0 4px 12px rgba(79, 140, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.passkey-auth-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.passkey-auth-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.passkey-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.passkey-footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.passkey-footer a {
+  color: #4f8cff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.passkey-footer a:hover {
+  color: #5c99ff;
+  text-decoration: underline;
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .passkey-auth-container {
+    padding: 1rem;
+  }
+
+  .passkey-auth-card {
+    padding: 1.5rem;
+  }
+
+  .passkey-auth-button {
+    min-height: 48px;
+    font-size: 0.95rem;
+  }
+}

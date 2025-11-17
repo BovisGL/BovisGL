@@ -1,0 +1,100 @@
+/* ======================== SHARED CSS VARIABLES ======================== */
+/* Colors used across all pages */
+
+:root {
+  /* Background Colors */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2a2a2a;
+  --bg-tertiary: #1f1f1f;
+  --bg-dark: #0a0a0a;
+  --bg-input: #181a20;
+
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: #e0e0e0;
+  --text-tertiary: #cfcfcf;
+  --text-muted: #bfc7d5;
+  --text-disabled: #888;
+
+  /* Status Colors */
+  --status-online: #4CAF50;
+  --status-online-bright: #44ff44;
+  --status-offline: #ff4444;
+  --status-starting: #FF9800;
+  --status-stopping: #FF5722;
+  --status-error: #f44336;
+
+  /* Accent Colors */
+  --accent-primary: #00ffff;
+  --accent-blue: #4f8cff;
+  --accent-blue-dark: #2356a8;
+  --accent-purple: #667eea;
+  --accent-purple-dark: #764ba2;
+
+  /* Border Colors */
+  --border-light: rgba(255, 255, 255, 0.03);
+  --border-medium: #333;
+  --border-dark: #444;
+
+  /* Error/Warning Colors */
+  --error-bg: #5d3131;
+  --error-text: #ff5c5c;
+  --error-bg-light: #2d1b1e;
+  --warning-text: #ffc107;
+
+  /* Responsive Breakpoints */
+  --bp-sm: 640px;
+  --bp-md: 1024px;
+  --bp-lg: 1280px;
+  --bp-xl: 1536px;
+
+  /* Responsive Spacing - Mobile First */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  /* Responsive Font Sizes - Mobile First */
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: 1.25rem;
+  --fs-2xl: 1.5rem;
+  --fs-3xl: 2rem;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
+  --radius-2xl: 12px;
+  --radius-3xl: 16px;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-medium: 0.3s ease;
+  --transition-slow: 0.5s ease;
+
+  /* Shadows */
+  --shadow-sm: 0 6px 12px rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 12px 24px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+/* Mobile-first responsive adjustments */
+@media (min-width: 768px) {
+  :root {
+    --fs-2xl: 1.875rem;
+    --fs-3xl: 2.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --fs-3xl: 2.5rem;
+    --spacing-xl: 2.5rem;
+    --spacing-2xl: 4rem;
+  }
+}

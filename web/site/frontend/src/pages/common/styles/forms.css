@@ -1,0 +1,93 @@
+/* ======================== SHARED FORM STYLES ======================== */
+/* Form inputs and controls used across all pages */
+
+/* Text Inputs */
+.input {
+  width: 100%;
+  background-color: var(--bg-input);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-sm);
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  box-sizing: border-box;
+  transition: border-color var(--transition-fast);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+}
+
+.input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.input::placeholder {
+  color: var(--text-disabled);
+}
+
+/* Textarea */
+.textarea {
+  width: 100%;
+  min-height: clamp(50px, 20vw, 100px);
+  background-color: var(--bg-input);
+  color: var(--text-primary);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-sm);
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+  font-family: 'Courier New', monospace;
+  font-size: clamp(12px, 1.5vw, 16px);
+  resize: vertical;
+  box-sizing: border-box;
+  transition: border-color var(--transition-fast);
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--status-online);
+}
+
+/* Command Input (specialized textarea) */
+.command-input {
+  width: 100%;
+  min-height: clamp(50px, 20vw, 100px);
+  background-color: var(--bg-input);
+  color: var(--text-primary);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-sm);
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+  font-family: 'Courier New', monospace;
+  font-size: clamp(12px, 1.5vw, 16px);
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.command-input:focus {
+  outline: none;
+  border-color: var(--status-online);
+}
+
+/* Form Labels */
+.label {
+  display: block;
+  color: var(--text-muted);
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
+}
+
+/* Form Groups */
+.form-group {
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+/* Command Section */
+.command-section {
+  background-color: var(--bg-secondary);
+  border-radius: clamp(6px, 1.5vw, 10px);
+  padding: clamp(1rem, 2vw, 1.5rem);
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  width: 100%;
+  box-sizing: border-box;
+}

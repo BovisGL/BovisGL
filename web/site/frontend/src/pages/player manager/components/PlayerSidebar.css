@@ -1,0 +1,379 @@
+/**
+ * PlayerSidebar Styles
+ * 
+ * Dark themed sidebar with:
+ * - Player list with avatars
+ * - Search input
+ * - Collapsible banned section
+ * - Responsive layout
+ */
+
+.pm-sidebar {
+  background: #0f171d;
+  border-right: 1px solid #1a2a33;
+  display: flex !important;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.4);
+  gap: 12px;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  .pm-sidebar {
+    position: static;
+    height: auto;
+    border-right: 1px solid #1a2a33;
+    border-bottom: none;
+    flex-shrink: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (min-width: 1536px) {
+  .pm-sidebar {
+    width: 560px !important;
+  }
+}
+
+/* Sidebar Header */
+.pm-sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4px;
+  margin-bottom: 8px;
+}
+
+.pm-sidebar-header h3 {
+  margin: 0;
+  color: #4fc3f7;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Close button (mobile) */
+.pm-sidebar-close {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #4fc3f7;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  transition: all 0.2s ease;
+}
+
+.pm-sidebar-close:hover {
+  color: #80deea;
+}
+
+@media (max-width: 1023px) {
+  .pm-sidebar-close {
+    display: block;
+  }
+}
+
+/* Search input */
+.pm-sidebar-search {
+  padding: 0 4px;
+  margin-bottom: 8px;
+}
+
+.pm-sidebar-search input {
+  width: 100%;
+  padding: 8px 12px;
+  background: #1a2a33;
+  border: 1px solid #27343f;
+  border-radius: 6px;
+  color: #e0e0e0;
+  font-size: 13px;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.pm-sidebar-search input:focus {
+  outline: none;
+  border-color: #4fc3f7;
+  box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.1);
+}
+
+.pm-sidebar-search input::placeholder {
+  color: #888;
+}
+
+.pm-sidebar-search input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Content area (scrollable) */
+.pm-sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Custom scrollbar */
+.pm-sidebar-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.pm-sidebar-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.pm-sidebar-content::-webkit-scrollbar-thumb {
+  background: rgba(79, 195, 247, 0.3);
+  border-radius: 4px;
+}
+
+.pm-sidebar-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(79, 195, 247, 0.5);
+}
+
+/* Messages */
+.pm-sidebar-message {
+  padding: 16px 12px;
+  text-align: center;
+  color: #888;
+  font-size: 13px;
+}
+
+.pm-sidebar-error {
+  padding: 12px;
+  background: #5e1914;
+  border: 1px solid #d32f2f;
+  border-radius: 6px;
+  color: #ff8a80;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* Retry button */
+.pm-sidebar-retry {
+  margin-top: 8px;
+  padding: 6px 12px;
+  background: #d32f2f;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pm-sidebar-retry:hover {
+  background: #f44336;
+}
+
+/* Player Cards */
+.pm-player-card {
+  padding: 8px;
+  cursor: pointer;
+  background: transparent;
+  border-left: 3px solid transparent;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  border-radius: 0;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  margin: 0 -4px;
+  padding-left: 12px;
+}
+
+.pm-player-card:hover {
+  background: rgba(79, 195, 247, 0.05);
+}
+
+.pm-player-card.online {
+  border-left-color: #4CAF50;
+}
+
+.pm-player-card.active {
+  background: #18232b;
+  border-left-color: #4fc3f7;
+}
+
+.pm-player-card.banned {
+  border-left-color: #ff6b6b;
+}
+
+/* Avatar */
+.pm-player-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background: #0e151a;
+  border: 1px solid #22303a;
+  flex-shrink: 0;
+  image-rendering: pixelated;
+}
+
+.pm-player-card.banned .pm-player-avatar {
+  border: 2px solid #ff4444;
+  opacity: 0.6;
+}
+
+/* Player info */
+.pm-player-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pm-player-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pm-player-card.banned .pm-player-name {
+  color: #ff6b6b;
+  font-weight: 600;
+}
+
+.pm-player-uuid {
+  font-size: 10px;
+  color: #888;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pm-player-status {
+  font-size: 10px;
+  color: #999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Banned section */
+.pm-banned-section {
+  margin-top: 8px;
+  border-top: 1px solid #2a3a45;
+  padding-top: 8px;
+}
+
+.pm-banned-toggle {
+  width: 100%;
+  padding: 8px 12px;
+  background: #1a1f24;
+  border: 1px solid #4a3a3a;
+  border-radius: 4px 4px 0 0;
+  color: #ff6b6b;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 -4px;
+  width: calc(100% + 8px);
+}
+
+.pm-banned-toggle:hover {
+  background: #24292f;
+}
+
+.pm-banned-list {
+  background: #14191e;
+  border-left: 1px solid #4a3a3a;
+  border-right: 1px solid #4a3a3a;
+  border-bottom: 1px solid #4a3a3a;
+  border-radius: 0 0 4px 4px;
+  margin: 0 -4px;
+  padding: 0 4px;
+}
+
+.pm-banned-list .pm-player-card {
+  margin: 0;
+  padding: 8px;
+  border-left: none;
+  border-bottom: 1px solid rgba(79, 195, 247, 0.05);
+}
+
+.pm-banned-list .pm-player-card:last-child {
+  border-bottom: none;
+}
+
+/* Footer */
+.pm-sidebar-footer {
+  border-top: 1px solid #1f2b33;
+  padding-top: 8px;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pm-sidebar-count {
+  padding: 8px 4px;
+  font-size: 11px;
+  color: #888;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.pm-back-button {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #27475a;
+  background: #1b2a33;
+  color: #cfe9ff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pm-back-button:hover {
+  background: #2a3d4a;
+  border-color: #4fc3f7;
+  color: #4fc3f7;
+}
+
+/* Responsive */
+@media (max-width: 1023px) {
+  .pm-sidebar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100% !important;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: none;
+    border-right: none;
+    z-index: 1000;
+    border-radius: 0;
+    margin-top: 60px;
+  }
+
+  .pm-sidebar[style*="translateX(0)"] {
+    transform: translateX(0) !important;
+  }
+}

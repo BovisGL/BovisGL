@@ -1,0 +1,129 @@
+/* ======================== SHARED LAYOUT STYLES ======================== */
+/* Layout patterns used across all pages */
+
+/* Flex Layouts */
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+/* Grid Layouts */
+.grid {
+  display: grid;
+}
+
+/* Server/Card Grid - Mobile-first responsive grid */
+.server-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 4vw, 2rem);
+  padding: clamp(1rem, 4vw, 2rem);
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 640px) {
+  .server-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop: 3 columns */
+@media (min-width: 1024px) {
+  .server-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Large Desktop: scale larger with more breathing room */
+@media (min-width: 1536px) {
+  .server-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(2rem, 3vw, 2.5rem);
+    padding: clamp(2rem, 5vw, 3rem);
+  }
+}
+
+/* Modern Admin Grid - Fully Responsive */
+.modern-admin-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 3vw, 1.5rem);
+  padding: clamp(1rem, 3vw, 2rem);
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 640px) {
+  .modern-admin-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop: 3 columns */
+@media (min-width: 1024px) {
+  .modern-admin-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Container Styles */
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: clamp(0.5rem, 5%, 2rem);
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.responsive-container {
+  width: 100%;
+  margin: 0;
+  padding: clamp(0.5rem, 5%, 2rem);
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+/* Full-height containers */
+.container-full-height {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: clamp(1rem, 5vw, 2rem);
+}

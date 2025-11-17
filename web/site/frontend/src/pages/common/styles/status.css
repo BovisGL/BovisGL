@@ -1,0 +1,69 @@
+/* ======================== SHARED STATUS STYLES ======================== */
+/* Status indicators used across all pages */
+
+/* Status Text Classes */
+.status-online {
+  color: var(--status-online) !important;
+  font-weight: bold;
+}
+
+.status-starting {
+  color: var(--status-starting) !important;
+  font-weight: bold;
+}
+
+.status-coming-soon {
+  color: var(--status-error) !important;
+  font-weight: bold;
+}
+
+.status-offline {
+  color: var(--status-offline) !important;
+  font-weight: bold;
+}
+
+/* Status Indicator Dots */
+.status-indicator {
+  display: inline-block;
+  width: clamp(10px, 1vw, 14px);
+  height: clamp(10px, 1vw, 14px);
+  border-radius: 50%;
+  margin-right: clamp(0.5rem, 1vw, 0.75rem);
+  border: none !important;
+  padding: 0 !important;
+}
+
+.status-indicator.status-online {
+  background-color: var(--status-online-bright) !important;
+}
+
+.status-indicator.status-offline {
+  background-color: var(--status-offline) !important;
+}
+
+.status-indicator.status-starting {
+  background-color: var(--status-starting) !important;
+  animation: pulse 1.5s infinite;
+}
+
+.status-indicator.status-stopping {
+  background-color: var(--status-stopping) !important;
+  animation: pulse 1.5s infinite;
+}
+
+/* Pulse Animation for Status Indicators */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Blink Animation */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0.3; }
+}
+
+.blinking {
+  animation: blink 1s infinite;
+}

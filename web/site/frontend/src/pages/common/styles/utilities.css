@@ -1,0 +1,151 @@
+/* ======================== SHARED UTILITY STYLES ======================== */
+/* Utility classes used across all pages */
+
+/* Text Utilities */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.text-error {
+  color: var(--error-text);
+}
+
+/* Spacing Utilities */
+.m-0 { margin: 0; }
+.mt-1 { margin-top: var(--spacing-sm); }
+.mt-2 { margin-top: var(--spacing-md); }
+.mt-3 { margin-top: var(--spacing-lg); }
+.mb-1 { margin-bottom: var(--spacing-sm); }
+.mb-2 { margin-bottom: var(--spacing-md); }
+.mb-3 { margin-bottom: var(--spacing-lg); }
+
+.p-0 { padding: 0; }
+.p-1 { padding: var(--spacing-sm); }
+.p-2 { padding: var(--spacing-md); }
+.p-3 { padding: var(--spacing-lg); }
+
+/* Display Utilities */
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+/* Error/Warning Messages */
+.error-message {
+  background: var(--error-bg);
+  color: var(--warning-text);
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+  border-radius: var(--radius-sm);
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  word-wrap: break-word;
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+}
+
+.error-box {
+  color: var(--error-text);
+  background-color: var(--error-bg-light);
+  border: 1px solid var(--error-text);
+  border-radius: var(--radius-md);
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+  margin: clamp(0.5rem, 1vw, 1rem) 0;
+}
+
+/* Loading States */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Modal Lock */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Logs/Code Display */
+.server-logs {
+  background-color: var(--bg-primary);
+  border-radius: clamp(6px, 1.5vw, 10px);
+  padding: clamp(1rem, 2vw, 1.5rem);
+  margin-top: clamp(1.25rem, 3vw, 2rem);
+  max-height: 40vh;
+  overflow-y: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.server-logs h4 {
+  margin-top: 0;
+  margin-bottom: clamp(0.75rem, 2vw, 1.25rem);
+  color: var(--text-primary);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
+.server-logs pre {
+  background-color: #000;
+  color: #00ff00;
+  padding: clamp(0.75rem, 1.5vw, 1.25rem);
+  border-radius: var(--radius-sm);
+  font-family: 'Courier New', monospace;
+  font-size: clamp(11px, 1.5vw, 14px);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-height: 30vh;
+  overflow-y: auto;
+}
+
+/* Logs Header */
+.logs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+  margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
+}
+
+.logs-header h4 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
+/* Overflow Handling */
+.overflow-auto {
+  overflow: auto;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-scroll {
+  overflow: scroll;
+}
+
+/* Box Sizing */
+.box-border {
+  box-sizing: border-box;
+}
