@@ -10,7 +10,10 @@ import fs from 'fs';
 
 const app = express();
 
-const rawOrigins = process.env.ADMIN_ALLOWED_ORIGINS || process.env.CORS_ALLOWED_ORIGINS || 'https://bovisgl.xyz,https://*.bovisgl.xyz';
+// Check if running in production mode
+const isProduction = process.env.PRODUCTION === 'true';
+
+const rawOrigins = process.env.ADMIN_ALLOWED_ORIGINS || process.env.CORS_ALLOWED_ORIGINS || (isProduction ? 'https://bovisgl.xyz,https://*.bovisgl.xyz' : 'http://localhost:3000,http://localhost:5173');
 const allowedOrigins = rawOrigins.split(',').map(o => o.trim()).filter(Boolean);
 
 function originMatches(pattern: string, origin: string): boolean {
