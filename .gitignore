@@ -98,3 +98,5 @@ systemd-services/
 
 # TODO - MOVE THIS FOLER ELSEWHERE
 communications/src/data/*
+
+/scripts

@@ -32,6 +32,8 @@ process.umask(0o002);
 
 // Core imports for server functionality
 
+// Check if running in production mode
+const isProduction = process.env.PRODUCTION === 'true';
 
 const LOGS_DIR = join(dirname(dirname(__dirname)), 'logs');
 
@@ -78,8 +80,8 @@ app.use(session({
   saveUninitialized: false,
   store: store,
   cookie: {
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+    secure: isProduction,
+    sameSite: isProduction ? 'strict' : 'lax',
     maxAge: 24 * 60 * 60 * 1000
   }
 }));
@@ -89,15 +91,19 @@ app.use(session({
 app.use(cookieParser());
 
 // CORS configuration - Security Enhanced
-const allowedOrigins = [
-  'http://localhost:3000',    // Local development frontend
-  'http://localhost:5173',    // Vite dev server
+const productionOrigins = [
   'https://bovisgl.pages.dev', // Production frontend
   'https://fca1678d.bovisgl.pages.dev', // Preview deployments
   'https://bovisgl.xyz',      // Production domain
   'https://www.bovisgl.xyz',  // Production domain with www
-  // CORS configuration for frontend domains
 ];
+
+const developmentOrigins = [
+  'http://localhost:3000',    // Local development frontend
+  'http://localhost:5173',    // Vite dev server
+];
+
+const allowedOrigins = isProduction ? productionOrigins : [...productionOrigins, ...developmentOrigins];
 
 // Allow additional origins from environment (for flexibility)
 if (process.env.ALLOWED_ORIGINS) {
