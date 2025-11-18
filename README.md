@@ -1,36 +1,246 @@
 
+# BovisGL Network
 
-## What this project is
-BovisGL is a web site and server network for hosting multiple Minecraft game-modes and servers (hub, anarchy, proxies, etc.). The repo contains the web site code and the services that manage server state, communications, and orchestration.
+> **Internal Project** - The BovisGL Minecraft Network infrastructure and web platform.
 
-This repository is structured to separate code and responsibilities:
+## What This Project Is
 
-- `dev contributions/` — Developer docs and contribution guides.
-  - `dev contributions/GIT_WORKFLOW.md` — Branching model and PR flow (feature -> main -> production).
-  - `.internal-docs/COMMIT_CONVENTION.md` — Conventional commit format we use (types, examples, breaking-change rules).
+BovisGL is a web platform and Minecraft server network for hosting multiple game modes and servers (hub, anarchy, proxies, etc.). The repository contains all website code and services that manage server state, player coordination, and network orchestration.
 
-- `web/site/` — The website code, split into two subprojects:
-  - `web/site/frontend/` — The public web frontend (UI and client-side code). This implements the website's pages and client behavior.
-  - `web/site/backend/` — The backend API for the website. The backend talks to local services and is reachable from the frontend via the Cloudflare Tunnel setup in production.
+**Not open source** — This is personal project infrastructure. Code is visible for reference, but contributions are not accepted.
 
-- `communications/` — The communications service. Responsibilities:
-  - Store and serve server state (online players, bans, lightweight player metadata).
-  - Provide HTTP/WebSocket endpoints used by the backend and the server plugins to sync player and server state.
-  - This service is internal-facing (no direct public internet exposure); the backend mediates access for the frontend.
+## Repository Structure
 
-- `plugins/` — Server plugins/mods for the different server types. These allow each server to communicate with the communications service and the backend so that multiple servers can act as a coherent network. Example plugin types in this repo:
-  - `anarchy/` — Fabric mod for the anarchy server
-  - `hub/` — Paper plugin for the hub server
-  - `proxy/` — Velocity proxy integration
+### Documentation
 
-- `scripts/` — Build and deployment helper scripts (for local/admin use). Many scripts expect to be run on the host machine that manages the servers (they copy systemd unit files, restart services, etc.).
+- **`contributions/`** — Developer guides and workflow
+  - `GIT_WORKFLOW.md` — Git branching model and PR process
+  - `COMMIT_CONVENTION.md` — Conventional commit format
 
+### Website Code (`web/site/`)
 
-## High-level flow (how things fit together)
+- **`web/site/frontend/`** — React web interface
+  - [Frontend README](web/site/frontend/README.md) — Comprehensive documentation
+  - Public landing page, admin panel, player manager
+  - Real-time updates via WebSocket
+  - WebAuthn/passkey authentication
 
-1. Players connect to the Minecraft servers (hub, anarchy, proxy, ...).
-2. Server plugins sync player/server state to the communications service.
-3. The backend (`web/site/backend`) reads communications data and exposes admin APIs to the frontend.
-4. The frontend (`web/site/frontend`) displays server status, admin interfaces, and public pages. Production access is routed through a Cloudflare Tunnel that connects the backend to the public frontend.
+- **`web/site/backend/`** — Express API server
+  - [Backend README](web/site/backend/README.md) — Comprehensive documentation
+  - Server management and control
+  - Player database and ban system
+  - Authentication and authorization
+  - WebSocket server for real-time events
+  - Discord bot integration
+
+### Services
+
+- **`communications/`** — Player coordination hub
+  - [Communications README](communications/README.md) — Service documentation
+  - Aggregates player data from all servers
+  - Real-time player tracking and events
+  - Server registration and health checks
+  - Event broadcasting system
+
+### Plugins & Mods
+
+- **`plugins/`** — Server integrations
+  - `anarchy/` — Fabric mod for anarchy server
+  - `hub/` — Paper plugin for hub server
+  - `proxy/` — Velocity proxy plugin
+  - `parkour/` — Parkour server plugin
+
+### Infrastructure
+
+- **`scripts/`** — Build and deployment scripts
+  - Service management
+  - Database initialization
+  - Backup and restore
+
+- **`systemd-services/`** — systemd unit files
+  - Service definitions for all components
+
+## Architecture Overview
+
+### Component Diagram
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                  Frontend (web/site/frontend)            │
+│                                                          │
+│  • Landing page, Admin panel, Player manager            │
+│  • React + TypeScript, real-time WebSocket updates      │
+│  • WebAuthn authentication                              │
+└──────────────────┬──────────────────────────────────────┘
+                   │ HTTPS/WebSocket
+                   ▼
+┌─────────────────────────────────────────────────────────┐
+│                   Backend (web/site/backend)             │
+│                                                          │
+│  • Express API server, JWT auth, CSRF protection       │
+│  • Server control (RCON), player management            │
+│  • WebSocket server for real-time events               │
+│  • Discord bot, LuckPerms integration                  │
+└──────────┬────────────────────────────┬────────────────┘
+           │                            │
+           │ HTTP/WebSocket             │ HTTP
+           ▼                            ▼
+┌──────────────────────────┐   ┌───────────────────┐
+│  Communications Service   │   │  PostgreSQL/      │
+│  (communications/)        │   │  SQLite           │
+│                          │   │                   │
+│  • Player aggregation    │   │  • LuckPerms      │
+│  • Event broadcasting    │   │  • Player data    │
+│  • Server registry       │   │  • Sessions       │
+│  • Online tracking       │   │  • Admin accounts │
+└──────────┬───────────────┘   └───────────────────┘
+           │
+           │ HTTP/RCON
+           ▼
+┌─────────────────────────────────────────────────────────┐
+│              Minecraft Servers                          │
+│                                                         │
+│  • Hub (Paper + Plugin)                                 │
+│  • Anarchy (Fabric + Mod)                               │
+│  • Proxy (Velocity Plugin)                              │
+│  • Parkour, Test servers                                │
+└─────────────────────────────────────────────────────────┘
+```
+
+### Data Flow
+
+#### Player Join Event
+
+```
+Server Plugin → Communications Service → Backend → Frontend → Admin Panel & Live Updates
+```
+
+1. Player connects to Minecraft server
+2. Server plugin sends player data to Communications Service (`POST /players/join`)
+3. Communications Service broadcasts to all connected clients
+4. Backend receives update and stores in database
+5. WebSocket event sent to frontend
+6. Admin panel and player manager update in real-time
+
+#### Server Control
+
+```
+Admin Panel → Backend API → Server Control Service → RCON → Minecraft Server
+```
+
+1. Admin clicks "Start Server" in web interface
+2. POST request to backend with CSRF token and JWT auth
+3. Server control service initiates process/sends RCON command
+4. Minecraft server starts
+5. Plugin sends player data back to Communications Service
+6. Real-time status updates broadcast to admin panel
+
+#### Ban Propagation
+
+```
+Admin → Backend → Communications → All Plugins → Enforced on all servers
+```
+
+1. Admin bans player in web interface
+2. Ban stored in database
+3. Communications Service notified of ban update
+4. Broadcast event to all connected plugins
+5. Plugins apply ban on their respective servers
+
+## Quick Start
+
+### Prerequisites
+
+- Node.js v20+
+- PostgreSQL (for LuckPerms)
+- Minecraft servers with plugins
+
+### Setup
+
+```bash
+# Backend
+cd web/site/backend
+npm install
+cp .env.example .env
+# Configure .env
+npm run dev
+
+# Communications Service
+cd communications
+npm install
+npm run dev
+
+# Frontend
+cd web/site/frontend
+npm install
+npm run dev
+```
+
+Visit `http://localhost:3000` for the frontend.
+
+## Documentation Links
+
+- **[Frontend Documentation](web/site/frontend/README.md)** — UI, authentication, routing, services
+- **[Backend Documentation](web/site/backend/README.md)** — API routes, server control, database, deployment
+- **[Communications Documentation](communications/README.md)** — Player tracking, event broadcasting, data sync
+- **[Git Workflow](contributions/GIT_WORKFLOW.md)** — Branching and PR process
+- **[Commit Convention](contributions/COMMIT_CONVENTION.md)** — Commit message format
+
+## Key Technologies
+
+### Frontend
+- React 18, TypeScript, Vite, React Router
+- WebAuthn/FIDO2 authentication
+- Real-time WebSocket updates
+
+### Backend
+- Express, TypeScript, Node.js
+- PostgreSQL (LuckPerms), SQLite (sessions, players)
+- RCON protocol for server control
+- Discord.js bot integration
+- Mediasoup WebRTC (voice chat)
+
+### Communications
+- Express, TypeScript, WebSocket
+- SQLite for player data
+- Event broadcasting system
+
+### Plugins
+- Fabric (Anarchy)
+- Paper (Hub)
+- Velocity (Proxy)
+
+## Development
+
+### Branching Model
+
+- `main` — Stable, production-ready code
+- `feature/*` — Feature branches
+- `hotfix/*` — Critical fixes for production
+
+See [Git Workflow](contributions/GIT_WORKFLOW.md) for details.
+
+### Code Standards
+
+- **Conventional Commits** — Follow format in [Commit Convention](contributions/COMMIT_CONVENTION.md)
+- **TypeScript** — Type-safe code required
+- **Linting** — ESLint with Prettier formatting
+- **No external contributions** — This is internal infrastructure
+
+## Deployment
+
+Each component has systemd service files in `systemd-services/`:
+
+```bash
+sudo systemctl start bovisgl-backend
+sudo systemctl start bovisgl-communications
+sudo systemctl start bovisgl-frontend
+```
+
+See respective README files for deployment details.
+
+## Team
+
+Internal BovisGL development team.
 
 
