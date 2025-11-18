@@ -100,3 +100,5 @@ systemd-services/
 communications/src/data/*
 
 /scripts
+web/site/backend/data
+communications/data
