@@ -25,9 +25,6 @@ This repository is structured to separate code and responsibilities:
 
 - `scripts/` — Build and deployment helper scripts (for local/admin use). Many scripts expect to be run on the host machine that manages the servers (they copy systemd unit files, restart services, etc.).
 
-- `systemd-services/` — Machine-local service unit files. These are machine-specific and may not apply on other computers; they will be moved or templated as needed.
-
-- `secrets/` and `config/` — Local secrets and configuration (not intended for public sharing). Keep secrets out of Git history.
 
 ## High-level flow (how things fit together)
 
