@@ -8,7 +8,8 @@
  * - Debug logging
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://backend.bovisgl.xyz';
+const isProduction = import.meta.env.VITE_PRODUCTION === 'true';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || (isProduction ? 'https://backend.bovisgl.xyz' : 'http://localhost:3001');
 
 export const api = {
   /**

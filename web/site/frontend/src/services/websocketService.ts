@@ -7,7 +7,8 @@
 
 // Construct WebSocket URL - add /api/ws path if not already present
 function getWebSocketUrl(): string {
-  const baseUrl = import.meta.env.VITE_WS_URL || 'wss://backend.bovisgl.xyz';
+  const isProduction = import.meta.env.VITE_PRODUCTION === 'true';
+  const baseUrl = import.meta.env.VITE_WS_URL || (isProduction ? 'wss://backend.bovisgl.xyz' : 'ws://localhost:3001');
   // Remove trailing slash if present
   const cleanUrl = baseUrl.replace(/\/$/, '');
   // Add /api/ws path
