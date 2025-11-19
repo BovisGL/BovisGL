@@ -359,7 +359,8 @@ After=network.target
 [Service]
 Type=simple
 User=bovisgl
-WorkingDirectory=/home/bovisgl/communications
+# Replace <REPO_ROOT> with the full path to your project root (for example: /home/USER/Minecraft/dev/BovisGL)
+WorkingDirectory=<REPO_ROOT>/communications
 Environment=NODE_ENV=production
 ExecStart=/usr/bin/node dist/server.js
 Restart=always

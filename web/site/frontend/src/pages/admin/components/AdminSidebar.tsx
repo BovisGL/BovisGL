@@ -16,11 +16,9 @@ interface AdminSidebarProps {
   onLogout: () => void;
   mobileOpen: boolean;
   onMobileClose: () => void;
-  isTestMode?: boolean;
-  onToggleTestMode?: () => void;
 }
 
-export const AdminSidebar = ({ onLogout, mobileOpen, onMobileClose, isTestMode = false, onToggleTestMode }: AdminSidebarProps) => {
+export const AdminSidebar = ({ onLogout, mobileOpen, onMobileClose }: AdminSidebarProps) => {
   const [width, setWidth] = useState(340);
   const [isResizing, setIsResizing] = useState(false);
   const navigate = useNavigate();
@@ -58,11 +56,6 @@ export const AdminSidebar = ({ onLogout, mobileOpen, onMobileClose, isTestMode =
     { label: '🏠 Home', action: () => { navigate('/'); onMobileClose(); }, color: 'blue' },
     { label: '🧑‍💻 Manage Players', action: () => { navigate('/playermanger'); onMobileClose(); }, color: 'green' },
     { label: '👤 Add Admin', action: () => { /* TODO: show modal */ onMobileClose(); }, color: 'purple' },
-    { 
-      label: isTestMode ? '🚪 Main Server' : '🧪 Test Servers', 
-      action: () => { onToggleTestMode?.(); onMobileClose(); }, 
-      color: isTestMode ? 'red' : 'teal' 
-    },
     { label: '📋 Admin Logs', action: () => { /* TODO: show modal */ onMobileClose(); }, color: 'orange' },
     { label: '🚪 Sign Out', action: () => { onLogout(); onMobileClose(); }, color: 'red' }
   ];
