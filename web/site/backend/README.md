@@ -771,7 +771,8 @@ After=network.target postgresql.service
 [Service]
 Type=simple
 User=bovisgl
-WorkingDirectory=/home/bovisgl/backend
+# Replace <REPO_ROOT> with the full path to your project root (for example: /home/USER/Minecraft/dev/BovisGL)
+WorkingDirectory=<REPO_ROOT>/web/site/backend
 Environment=NODE_ENV=production
 ExecStart=/usr/bin/node dist/index.js
 Restart=always

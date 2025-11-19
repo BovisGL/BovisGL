@@ -88,39 +88,6 @@ export const SERVER_CONFIG: Record<string, ServerConfig> = {
     port: 25569,
     color: '#795548',
     ram: '10G'
-  },
-  // Test Servers
-  'test-velocity': {
-    name: 'Test Velocity Proxy',
-    workingDir: path.join(BOVISGL_ROOT, 'servers/test/velocity'),
-    jarPath: path.join(BOVISGL_ROOT, 'servers/test/velocity/velocity-3.4.0-SNAPSHOT-528.jar'),
-    logFile: path.join(BOVISGL_ROOT, 'servers/test/velocity/logs/latest.log'),
-    // No RCON for Velocity
-    port: 31500,
-    color: '#009688',
-    ram: '512M'
-  },
-  'test-paper': {
-    name: 'Test Paper Server',
-    workingDir: path.join(BOVISGL_ROOT, 'servers/test/paper'),
-    jarPath: path.join(BOVISGL_ROOT, 'servers/test/paper/paper-1.21.8-40.jar'),
-    logFile: path.join(BOVISGL_ROOT, 'servers/test/paper/logs/latest.log'),
-    rconPort: 31511,
-    rconPassword: process.env.RCON_PASSWORD || 'BovisGLTestRcon123!',
-    port: 31501,
-    color: '#3F51B5',
-    ram: '2G'
-  },
-  'test-fabric': {
-    name: 'Test Fabric Server',
-    workingDir: path.join(BOVISGL_ROOT, 'servers/test/fabric'),
-    jarPath: path.join(BOVISGL_ROOT, 'servers/test/fabric/fabric-server-mc.1.21.7-loader.0.17.2-launcher.1.1.0.jar'),
-    logFile: path.join(BOVISGL_ROOT, 'servers/test/fabric/logs/latest.log'),
-    rconPort: 31512,
-    rconPassword: process.env.RCON_PASSWORD || 'BovisGLTestRcon123!',
-    port: 31502,
-    color: '#607D8B',
-    ram: '2G'
   }
 };
 

@@ -20,7 +20,6 @@ export const AdminPanel = () => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
-  const [isTestMode, setIsTestMode] = useState(false);
   const { servers, loading, error, refresh } = useServerStatus();
   const navigate = useNavigate();
 
@@ -84,14 +83,8 @@ export const AdminPanel = () => {
 
   // Sort servers: active first, then disabled (arena, civilization, parkour)
   const disabledServers = new Set(['arena', 'civilization', 'parkour']);
-  const testServers = new Set(['test-velocity', 'test-fabric', 'test-paper']);
   
-  // Filter servers based on mode
-  const displayServers = isTestMode 
-    ? servers.filter(s => testServers.has(s.id))
-    : servers.filter(s => !testServers.has(s.id));
-  
-  const sortedServers = [...displayServers].sort((a, b) => {
+  const sortedServers = [...servers].sort((a, b) => {
     const aDisabled = disabledServers.has(a.id) ? 1 : 0;
     const bDisabled = disabledServers.has(b.id) ? 1 : 0;
     if (aDisabled !== bDisabled) return aDisabled - bDisabled;
@@ -115,14 +108,10 @@ export const AdminPanel = () => {
         onLogout={handleLogout}
         mobileOpen={mobileMenuOpen}
         onMobileClose={() => setMobileMenuOpen(false)}
-        isTestMode={isTestMode}
-        onToggleTestMode={() => setIsTestMode(!isTestMode)}
       />
 
       <main className="admin-content">
-        <h1 className="admin-title">
-          {isTestMode ? 'Test Servers' : 'BovisGL Admin Panel'}
-        </h1>
+        <h1 className="admin-title">BovisGL Admin Panel</h1>
 
         {loading && (
           <div className="loading-state">
